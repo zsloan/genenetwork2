@@ -7,12 +7,9 @@ from utility.logger import getLogger
 logger = getLogger(__name__ )
 
 class InfoPage(object):
-    def __init__(self, start_vars):
+    def __init__(self, dataset):
         self.info = None
-        self.gn_accession_id = None
-        if 'gn_accession_id' in start_vars:
-            self.gn_accession_id = start_vars['gn_accession_id']
-        self.info_page_name = start_vars['info_page_name']
+        self.dataset = dataset
 
         self.get_info()
         self.get_datasets_list()
@@ -37,13 +34,8 @@ class InfoPage(object):
                       "LEFT JOIN Organizations USING (OrganizationId) " +
                       "LEFT JOIN DatasetStatus USING (DatasetStatusId) WHERE ")
 
-        if self.gn_accession_id:
-            final_query = query_base + "GN_AccesionId = {}".format(self.gn_accession_id)
-            results = g.db.execute(final_query).fetchone()
-            if self.info_page_name and not results:
-				final_query = query_base + "InfoPageName={}".format(self.info_page_name)
-        elif self.info_page_name:
-            final_query = query_base + "InfoPageName={}".format(self.info_page_name)
+        if self.dataset:
+            final_query = query_base + "InfoPageName='{}'".format(self.dataset)
             results = g.db.execute(final_query).fetchone()
         else:
             raise 'No correct parameter found'
@@ -55,10 +47,8 @@ class InfoPage(object):
             insert_sql = "INSERT INTO InfoFiles SET InfoFiles.InfoPageName={}".format(self.info_page_name)
             return self.get_info()
 
-        if not self.gn_accession_id and self.info:
+        if self.info:
             self.gn_accession_id = self.info['accession_id']
-        if not self.info_page_name and self.info:
-            self.info_page_name = self.info['info_page_name'] 
 
     def get_datasets_list(self):
         self.filelist = []

@@ -904,9 +904,9 @@ def snp_browser_page():
 
     return render_template("snp_browser.html", **template_vars.__dict__)
 
-@app.route("/db_info", methods=('GET',))
-def db_info_page():
-    template_vars = InfoPage(request.args)
+@app.route("/resource/dataset/<path:dataset>", methods=('GET',))
+def db_info_page(dataset):
+    template_vars = InfoPage(dataset)
 
     return render_template("info_page.html", **template_vars.__dict__)
 

@@ -187,11 +187,7 @@ dataset_info = function() {
   var dataset, url;
   accession_id = $('#dataset option:selected').data("id");
   name = $('#dataset option:selected').val();
-  if (accession_id != "None") {
-    url = "http://genenetwork.org/webqtl/main.py?FormID=sharinginfo&GN_AccessionId=" + accession_id + "&InfoPageName=" + name;
-  } else {
-    url = "http://genenetwork.org/webqtl/main.py?FormID=sharinginfo&InfoPageName=" + name;
-  }
+  url = "http://gn2-zach.genenetwork.org/resource/dataset/" + name
   return open_window(url, "Dataset Info");
 };
 $('#dataset_info').click(dataset_info);
