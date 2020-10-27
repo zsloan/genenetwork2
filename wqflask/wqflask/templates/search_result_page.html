@@ -40,8 +40,8 @@
                     {% elif word.search_term|length == 5 %}
                     with <u>{{ word.key|upper }}</u> between <strong>{{ word.search_term[0] }}</strong> and <strong>{{ word.search_term[1] }}</strong> on chromosome <strong>{{ word.search_term[2] }}</strong> between <strong>{{ word.search_term[3] }}</strong> and <strong>{{ word.search_term[4] }}</strong> Mb{% if loop.last %}.{% else %} and {% endif %}
                     {% endif %}
-                    {% elif word.key|lower == "position" %}
-                    with <u>target genes</u> on chromosome <strong>{% if word.search_term[0].split('chr')|length > 1 %}{{ word.search_term[0].split('chr')[1] }}{% elif word.search_term[0].split('CHR')|length > 1 %}{{ word.search_term[0].split('CHR')[1] }}{% else %}{{ word.search_term[0] }}{% endif %}</strong> between <strong>{{ word.search_term[1] }}</strong> and <strong>{{ word.search_term[2] }}</strong> Mb{% if loop.last %}.{% else %} and {% endif %}
+                    {% elif word.key|lower == "position" or word.key|lower == "mb" %}
+                    with <u>target genes</u> on chromosome <strong>{% if (word.search_term[0]|lower).split('chr')|length > 1 %}{{ (word.search_term[0]|lower).split('chr')[1] }}{% else %}{{ word.search_term[0] }}{% endif %}</strong> between <strong>{{ word.search_term[1] }}</strong> and <strong>{{ word.search_term[2] }}</strong> Mb{% if loop.last %}.{% else %} and {% endif %}
                     {% else %}
                     {% if word.search_term[0] == "*" %} in the dataset.{% else %}{% if loop.first %}that match:<br>{% endif %}<b>"{{ word.search_term[0] }}"</b>{% if loop.last %}{% else %} and {% endif %}{% endif %}
                     {% endif %}
