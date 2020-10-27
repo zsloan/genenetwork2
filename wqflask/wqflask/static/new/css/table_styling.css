@@ -1,0 +1,13 @@
+button.toggle-vis {
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+}
+
+button.toggle-vis.active {
+    background: #bdbdbd;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+            box-shadow: inset 0px 0px 5px #c1c1c1;
+     outline: none;
+    /*background-color: #d3d3d3;*/
+}
