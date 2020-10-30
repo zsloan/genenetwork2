@@ -210,6 +210,7 @@
             tickformat: tick_digits,
             automargin: true
         },
+        showlegend: false,
         hovermode: "closest"
     }
 
@@ -286,7 +287,6 @@
         var data = [all_intercept_trace, primary_trace, other_trace]
     }
 
-    console.log("TRACE:", data)
     Plotly.newPlot('prob_plot_div', data, layout, root.modebar_options)
   };
 
