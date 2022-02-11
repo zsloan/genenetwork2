@@ -160,6 +160,7 @@ def lit_for_trait_list(corr_results, this_dataset, this_trait):
 def fetch_sample_data(start_vars, this_trait, this_dataset, target_dataset):
 
     corr_samples_group = start_vars["corr_samples_group"]
+
     if corr_samples_group == "samples_primary":
         sample_data = process_samples(
             start_vars, this_dataset.group.all_samples_ordered())
@@ -171,11 +172,7 @@ def fetch_sample_data(start_vars, this_trait, this_dataset, target_dataset):
     else:
         sample_data = process_samples(start_vars)
 
-    sample_data = process_samples(
-        start_vars, this_dataset.group.all_samples_ordered())
-
     target_dataset.get_trait_data(list(sample_data.keys()))
-    this_trait = retrieve_sample_data(this_trait, this_dataset)
     this_trait_data = {
         "trait_sample_data": sample_data,
         "trait_id": start_vars["trait_id"]
